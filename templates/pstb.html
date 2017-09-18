@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+        <title>Weather in {{ city }}</title>
+    </head>
+    <body>
+        <p id="centerthis">
+            The weather in {{ city }} is {{ weather }}
+        </p>
+    </body>
+</html>
