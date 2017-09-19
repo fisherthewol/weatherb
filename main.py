@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import urllib
 import json
 app = Flask(__name__)
-
+global start
+start = True
 
 def weatherconv(apidict):
     if "Rain" in apidict:
@@ -13,11 +14,16 @@ def weatherconv(apidict):
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    global start
+    if start:
+        return render_template("index.html")
+    else:
+        return redirect(url_for())
 
 
-@app.route('/<cityurl>')
-def postcd(cityurl):
+@app.route('/city/')
+def postcd():
+    cityurl = request.args.get("city")
     with urllib.request.urlopen("https://api.openweathermap.org/data/2.5/weather?q={},uk&appid=BLANK".format(cityurl)) as url:
         jn = json.loads(url.read().decode())
         weatherstat = weatherconv(str(jn["weather"][0]["main"]))
