@@ -21,12 +21,13 @@ def weatherconv(apidict):
 @app.route('/')
 def index():
     cities = ((London, uk), (Sheffield, uk), (Manchester, uk), (Brighton, uk))
-    with urllib.request.urlopen("https://api.openweathermap.org/data/2.5/weather?q={},uk&appid=BLANK".format(cities[randint(0, len(cities))][0])) as url:
+    citychoice = cities[randint(0, len(cities))][0]
+    with urllib.request.urlopen("https://api.openweathermap.org/data/2.5/weather?q={},uk&appid=BLANK".format(citychoice) as url:
         jn = json.loads(url.read().decode())
         weathercond = str(jn["weather"][0]["main"])
         weatherstat = weatherconv(weathercond)
     ggif = redred(weathercond)
-    return render_template("pstb.html", city=str(cityurl).title(), weather=weatherstat)
+    return render_template("pstb.html", city=str(cityurl).title(), weather=weatherstat, backgif=ggif)
 
 
 
@@ -37,4 +38,4 @@ def postcd(cityurl):
         weathercond = str(jn["weather"][0]["main"])
         weatherstat = weatherconv(weathercond)
     ggif = redred(weathercond)
-    return render_template("pstb.html", city=str(cityurl).title(), weather=weatherstat)
+    return render_template("pstb.html", city=str(cityurl).title(), weather=weatherstat, backgif=ggif)
