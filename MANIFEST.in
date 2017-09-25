@@ -1,0 +1,2 @@
+graft weatherb/static
+graft weatherb/templates
