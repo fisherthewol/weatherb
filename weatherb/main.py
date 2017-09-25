@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 
 def weatherconv(apidict):
+    """Return nice string for give weather"""
     if "Rain" in apidict:
         return "rainy"
     elif "Clouds" in apidict:
