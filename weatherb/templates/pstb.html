@@ -7,12 +7,10 @@
         <title>Weather in {{ city }}</title>
     </head>
     <body>
-        <div class="background">
-            <img src="{{ backgif }}" alt="">
-        </div>
-        <div class="text">
-            <p id="centerthis">
-                The weather in {{ city }}, {{ country }} is {{ weather }}.
+        <div>
+            <img src="{{ backgif }}" id="bg">
+            <p class="text">
+                The weather in {{ city }} is {{ weather }}.
             </p>
         </div>
     </body>
