@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import urllib
 import json
 from .redre import redred
-from random import randint
+from random import randrange
 
 app = Flask(__name__)
 
@@ -21,15 +21,15 @@ def weatherconv(apidict):
 
 @app.route('/')
 def index():
-    cities = (("London", "uk"), ("Sheffield", "uk"), ("Manchester", "uk"), ("Brighton", "uk"))
-    cityint = randint(0, len(cities))
-    citychoice = cities[cityint][0]
+    cities = ("London", "Sheffield", "Manchester", "Brighton")
+    cityint = randrange(0, len(cities))
+    citychoice = cities[cityint]
     with urllib.request.urlopen("https://api.openweathermap.org/data/2.5/weather?q={},uk&appid=BLANK".format(citychoice)) as url:
         jn = json.loads(url.read().decode())
         weathercond = str(jn["weather"][0]["main"])
         weatherstat = weatherconv(weathercond)
     ggif = redred(weathercond)
-    return render_template("pstb.html", city=str(cityurl).title(), weather=weatherstat, backgif=ggif)
+    return render_template("pstb.html", city=str(citychoice).title(), weather=weatherstat, backgif=ggif)
 
 
 
