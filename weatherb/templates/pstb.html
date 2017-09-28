@@ -3,12 +3,26 @@
     <head>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-        <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+        <style media="screen">
+        .text {
+            margin: auto;
+            width: 80%;
+            padding: 10px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 120%;
+            text-align: center;
+            -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+        body {
+            background-image: url("{{ backgif }}");
+        }
+        </style>
         <title>Weather in {{ city }}</title>
     </head>
     <body>
         <div>
-            <img src="{{ backgif }}" id="bg">
             <p class="text">
                 The weather in {{ city }} is {{ weather }}.
             </p>
